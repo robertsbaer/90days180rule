@@ -5,7 +5,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/90days180rule/',
+  base: '/',
   plugins: [react()],
   resolve: {
     alias: {
