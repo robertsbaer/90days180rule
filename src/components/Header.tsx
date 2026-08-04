@@ -23,12 +23,7 @@ export function Header() {
             </p>
           </NavLink>
         </div>
-        <nav className="hidden md:flex items-center gap-4 text-sm font-medium">
-          <NavLink to="/schengen-calculator" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">Calculator</NavLink>
-          <NavLink to="/90-180-rule" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">90/180 Rule</NavLink>
-          <NavLink to="/faq" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">FAQ</NavLink>
-          <NavLink to="/travel-tips" className="text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">Travel Tips</NavLink>
-        </nav>
+        
         <div className="flex items-center gap-1">
           <button
             onClick={undo}

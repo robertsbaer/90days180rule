@@ -126,42 +126,7 @@ export function SEOContent() {
         </div>
       </section>
 
-      {/* How Does the Calculator Work Section */}
-      <section>
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">
-          How Does the Schengen Calculator Work?
-        </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
-            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">1</div>
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Add Previous Trips</h3>
-            <p className="text-slate-700 dark:text-slate-300 text-sm">
-              Enter all your previous trips to the Schengen Area with entry and exit dates.
-            </p>
-          </div>
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-6 border border-green-200 dark:border-green-800">
-            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">2</div>
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Check Compliance</h3>
-            <p className="text-slate-700 dark:text-slate-300 text-sm">
-              The calculator analyzes your rolling 180-day period and shows your current status.
-            </p>
-          </div>
-          <div className="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20 rounded-lg p-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">3</div>
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">See Remaining Days</h3>
-            <p className="text-slate-700 dark:text-slate-300 text-sm">
-              Get instant visibility into how many days you have remaining in your current period.
-            </p>
-          </div>
-          <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 rounded-lg p-6 border border-amber-200 dark:border-amber-800">
-            <div className="text-2xl font-bold text-amber-600 dark:text-amber-400 mb-2">4</div>
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Plan Future Travel</h3>
-            <p className="text-slate-700 dark:text-slate-300 text-sm">
-              Use the multi-trip planner to test future trips and ensure compliance.
-            </p>
-          </div>
-        </div>
-      </section>
+
 
       {/* Schengen Countries Section */}
       <section className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-8">
@@ -206,86 +171,9 @@ export function SEOContent() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl p-8 text-center">
-        <h2 className="text-3xl font-bold text-white mb-4">
-          Ready to Check Your Schengen Days?
-        </h2>
-        <p className="text-cyan-100 text-lg mb-6 max-w-2xl mx-auto">
-          Use our free calculator above to check your 90/180 day compliance, plan future trips, and avoid overstaying your welcome in Europe.
-        </p>
-        <div className="flex flex-wrap justify-center gap-4 text-sm text-cyan-100">
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-            Completely Free
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-            No Registration Required
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-400 rounded-full"></span>
-            Professional Grade Tool
-          </div>
-        </div>
-      </section>
 
-      {/* Additional Resources */}
-      <section className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-8">
-        <h2 className="text-2xl font-bold text-slate-900 dark:text-slate-100 mb-6">
-          Additional Resources
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-3">Official Sources</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="https://ec.europa.eu/home-affairs/policies/schengen-borders-and-visa/schengen-area_en"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
-                >
-                  European Commission - Schengen Area
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.schengenvisainfo.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
-                >
-                  Schengen Visa Information
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-3">Travel Planning</h3>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a
-                  href="/schengen-calculator-guide"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  Complete Guide to Using Our Calculator
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/schengen-travel-tips"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  Schengen Travel Tips & Best Practices
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+
+
     </div>
   );
 }
