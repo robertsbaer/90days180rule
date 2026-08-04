@@ -1,7 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import App from './App.tsx';
 import { 
   HomePage, 
@@ -16,7 +16,7 @@ import './index.css';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HelmetProvider>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<HomePage />} />
@@ -27,7 +27,7 @@ createRoot(document.getElementById('root')!).render(
             <Route path="when-can-i-return-to-schengen" element={<WhenCanIReturnPage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </HelmetProvider>
   </StrictMode>
 );
