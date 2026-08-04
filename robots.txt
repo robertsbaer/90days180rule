@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Allow all search engines to crawl the site
+Disallow: /api/
+Disallow: /admin/
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# Sitemap location
+Sitemap: https://schengen-calculator.com/sitemap.xml
+
+# Crawl delay for bots that support it
+Crawl-delay: 1
