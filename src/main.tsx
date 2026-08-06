@@ -11,7 +11,9 @@ import {
   HowManyDaysPage, 
   WhenCanIReturnPage,
   USACitizensPage,
-  UKCitizensPage
+  UKCitizensPage,
+  CountDaysPage,
+  OverstayRulesPage
 } from './pages/SEOPages.tsx';
 import './index.css';
 
@@ -29,6 +31,8 @@ createRoot(document.getElementById('root')!).render(
             <Route path="when-can-i-return-to-schengen" element={<WhenCanIReturnPage />} />
             <Route path="schengen-calculator-americans" element={<USACitizensPage />} />
             <Route path="schengen-calculator-uk" element={<UKCitizensPage />} />
+            <Route path="how-to-count-schengen-days" element={<CountDaysPage />} />
+            <Route path="schengen-overstay-rules" element={<OverstayRulesPage />} />
           </Route>
         </Routes>
       </BrowserRouter>

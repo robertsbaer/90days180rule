@@ -2,6 +2,13 @@ import { SEO, SEO_CONFIGS } from '@/components/SEO';
 import { generateStructuredData } from '@/lib/structuredData';
 import { SEOContent } from '@/components/SEOContent';
 
+import { NinetyDayRuleContent } from '@/components/content/NinetyDayRuleContent';
+
+import { USACitizensContent } from '@/components/content/USACitizensContent';
+import { UKCitizensContent } from '@/components/content/UKCitizensContent';
+import { CountDaysContent } from '@/components/content/CountDaysContent';
+import { OverstayRulesContent } from '@/components/content/OverstayRulesContent';
+
 export function HomePage() {
   const structuredData = [
     generateStructuredData({ type: 'WebApplication', data: {} }),
@@ -29,11 +36,11 @@ export function SchengenCalculatorPage() {
 }
 
 export function NinetyDayRulePage() {
-  const structuredData = [generateStructuredData({ type: 'Article', data: {} })];
+  const structuredData = [generateStructuredData({ type: 'Article', data: { headline: "The Schengen 90/180-Day Rule Explained" } })];
   return (
     <>
       <SEO {...SEO_CONFIGS['90-180-rule']} type="article" structuredData={structuredData} />
-      <SEOContent />
+      <NinetyDayRuleContent />
     </>
   );
 }
@@ -69,23 +76,41 @@ export function WhenCanIReturnPage() {
 }
 
 export function USACitizensPage() {
-  const structuredData = [generateStructuredData({ type: 'Article', data: {} })];
+  const structuredData = [generateStructuredData({ type: 'Article', data: { headline: "Schengen Calculator for Americans" } })];
   return (
     <>
       <SEO {...SEO_CONFIGS['schengen-calculator-americans']} type="article" structuredData={structuredData} />
-      {/* TODO: Add unique content for this page */}
-      <SEOContent />
+      <USACitizensContent />
     </>
   );
 }
 
 export function UKCitizensPage() {
-  const structuredData = [generateStructuredData({ type: 'Article', data: {} })];
+  const structuredData = [generateStructuredData({ type: 'Article', data: { headline: "Schengen Calculator for UK Travellers" } })];
   return (
     <>
       <SEO {...SEO_CONFIGS['schengen-calculator-uk']} type="article" structuredData={structuredData} />
-      {/* TODO: Add unique content for this page */}
-      <SEOContent />
+      <UKCitizensContent />
+    </>
+  );
+}
+
+export function CountDaysPage() {
+  const structuredData = [generateStructuredData({ type: 'Article', data: { headline: "How to Count Schengen Days" } })];
+  return (
+    <>
+      <SEO title="How to Count Schengen Days Correctly | 90/180 Rule" description="Learn the official method for counting your Schengen days to stay compliant with the 90/180 rule, including how arrival and departure days are treated." type="article" structuredData={structuredData} />
+      <CountDaysContent />
+    </>
+  );
+}
+
+export function OverstayRulesPage() {
+  const structuredData = [generateStructuredData({ type: 'Article', data: { headline: "Schengen Overstay Rules and Consequences" } })];
+  return (
+    <>
+      <SEO title="Schengen Overstay Rules & Consequences | What Happens If You Overstay" description="Understand the serious consequences of overstaying your 90-day allowance in the Schengen Area, including fines, bans, and future visa implications." type="article" structuredData={structuredData} />
+      <OverstayRulesContent />
     </>
   );
 }

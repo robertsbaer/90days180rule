@@ -58,22 +58,37 @@ export function Header() {
 export function Footer() {
   return (
     <footer className="border-t border-slate-200 px-4 py-6 sm:px-6 dark:border-slate-800">
-      <div className="mx-auto max-w-3xl space-y-2">
-        <p className="text-xs text-slate-500 dark:text-slate-400">
-          For planning only. Border officials make the final determination. Always verify against
-          the official European Commission calculator.
-        </p>
-        <p className="text-xs text-slate-400 dark:text-slate-500">
-          Made by{' '}
-          <a
-            href="https://dcmademedia.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-medium text-slate-600 underline-offset-2 hover:text-slate-900 hover:underline dark:text-slate-400 dark:hover:text-slate-200"
-          >
-            DC Made Media
-          </a>
-        </p>
+      <div className="mx-auto max-w-3xl">
+        <div className="mb-6 grid grid-cols-2 gap-8 md:grid-cols-4">
+          <div className="space-y-2 text-sm">
+            <p className="font-semibold text-slate-800 dark:text-slate-200">Guides</p>
+            <NavLink to="/schengen-90-180-rule" className="block text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">90/180 Rule Explained</NavLink>
+            <NavLink to="/how-to-count-schengen-days" className="block text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">How to Count Days</NavLink>
+            <NavLink to="/schengen-overstay-rules" className="block text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">Overstay Rules</NavLink>
+          </div>
+          <div className="space-y-2 text-sm">
+            <p className="font-semibold text-slate-800 dark:text-slate-200">Calculators</p>
+            <NavLink to="/schengen-calculator-americans" className="block text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">For Americans</NavLink>
+            <NavLink to="/schengen-calculator-uk" className="block text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-100">For UK Citizens</NavLink>
+          </div>
+        </div>
+        <div className="space-y-2">
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            For planning only. Border officials make the final determination. Always verify against
+            the official European Commission calculator.
+          </p>
+          <p className="text-xs text-slate-400 dark:text-slate-500">
+            Made by{' '}
+            <a
+              href="https://dcmademedia.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-slate-600 underline-offset-2 hover:text-slate-900 hover:underline dark:text-slate-400 dark:hover:text-slate-200"
+            >
+              DC Made Media
+            </a>
+          </p>
+        </div>
       </div>
     </footer>
   );

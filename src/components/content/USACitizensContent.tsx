@@ -1,0 +1,1 @@
+export function USACitizensContent() { return <div className="prose dark:prose-invert max-w-none py-12"><h1 className='text-4xl font-bold'>Schengen Calculator for Americans</h1><p>Content coming soon...</p></div> }
