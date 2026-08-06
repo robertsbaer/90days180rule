@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
+import { hydrateRoot } from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import App from './App.tsx';
 import { 
@@ -17,14 +18,16 @@ import {
 } from './pages/SEOPages.tsx';
 import './index.css';
 
-createRoot(document.getElementById('root')!).render(
+const container = document.getElementById('root')!;
+
+const app = (
   <StrictMode>
     <HelmetProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<HomePage />} />
-            <Route path="90days180rule" element={<SchengenCalculatorPage />} />
+            <Route path="schengen-calculator" element={<SchengenCalculatorPage />} />
             <Route path="90-180-rule" element={<NinetyDayRulePage />} />
             <Route path="schengen-visa-calculator" element={<SchengenVisaCalculatorPage />} />
             <Route path="how-many-days-can-i-stay-in-europe" element={<HowManyDaysPage />} />
@@ -39,3 +42,9 @@ createRoot(document.getElementById('root')!).render(
     </HelmetProvider>
   </StrictMode>
 );
+
+if (container.hasChildNodes()) {
+  hydrateRoot(container, app);
+} else {
+  createRoot(container).render(app);
+}
