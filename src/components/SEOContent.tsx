@@ -95,23 +95,23 @@ export function SEOContent() {
       <section className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-8">
         <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">Why Use Our Calculator?</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div className="text-center">
+          <div className="text-center p-4 rounded-lg transition-colors hover:bg-slate-200 dark:hover:bg-slate-800">
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">100% Free</h3>
             <p className="text-slate-700 dark:text-slate-300 text-sm">This tool is completely free to use.</p>
           </div>
-          <div className="text-center">
+          <div className="text-center p-4 rounded-lg transition-colors hover:bg-slate-200 dark:hover:bg-slate-800">
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">No Account Required</h3>
             <p className="text-slate-700 dark:text-slate-300 text-sm">No registration or sign-up needed.</p>
           </div>
-          <div className="text-center">
+          <div className="text-center p-4 rounded-lg transition-colors hover:bg-slate-200 dark:hover:bg-slate-800">
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Easy Travel Planning</h3>
             <p className="text-slate-700 dark:text-slate-300 text-sm">Plan your future trips with confidence.</p>
           </div>
-          <div className="text-center">
+          <div className="text-center p-4 rounded-lg transition-colors hover:bg-slate-200 dark:hover:bg-slate-800">
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Mobile Friendly</h3>
             <p className="text-slate-700 dark:text-slate-300 text-sm">Works perfectly on desktop and mobile.</p>
           </div>
-          <div className="text-center">
+          <div className="text-center p-4 rounded-lg transition-colors hover:bg-slate-200 dark:hover:bg-slate-800">
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Avoid Overstays</h3>
             <p className="text-slate-700 dark:text-slate-300 text-sm">Prevent accidental and costly overstays.</p>
           </div>
