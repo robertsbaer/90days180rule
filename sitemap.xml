@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Homepage -->
   <url>
-    <loc>https://schengen-calculator.com</loc>
+    <loc>https://90days180rule.com</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -10,35 +10,35 @@
   
   <!-- Main Calculator Pages -->
   <url>
-    <loc>https://schengen-calculator.com/schengen-calculator</loc>
+    <loc>https://90days180rule.com/schengen-calculator</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   
   <url>
-    <loc>https://schengen-calculator.com/90-180-rule</loc>
+    <loc>https://90days180rule.com/90-180-rule</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://schengen-calculator.com/schengen-visa-calculator</loc>
+    <loc>https://90days180rule.com/schengen-visa-calculator</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://schengen-calculator.com/how-many-days-can-i-stay-in-europe</loc>
+    <loc>https://90days180rule.com/how-many-days-can-i-stay-in-europe</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://schengen-calculator.com/when-can-i-return-to-schengen</loc>
+    <loc>https://90days180rule.com/when-can-i-return-to-schengen</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -46,14 +46,14 @@
   
   <!-- Educational Content -->
   <url>
-    <loc>https://schengen-calculator.com/schengen-calculator-guide</loc>
+    <loc>https://90days180rule.com/schengen-calculator-guide</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
-    <loc>https://schengen-calculator.com/schengen-travel-tips</loc>
+    <loc>https://90days180rule.com/schengen-travel-tips</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -61,7 +61,7 @@
   
   <!-- Country Information -->
   <url>
-    <loc>https://schengen-calculator.com/schengen-countries</loc>
+    <loc>https://90days180rule.com/schengen-countries</loc>
     <lastmod>2024-01-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
