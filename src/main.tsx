@@ -20,7 +20,7 @@ createRoot(document.getElementById('root')!).render(
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<HomePage />} />
-            <Route path="schengen-calculator" element={<SchengenCalculatorPage />} />
+            <Route path="90days180rule" element={<SchengenCalculatorPage />} />
             <Route path="90-180-rule" element={<NinetyDayRulePage />} />
             <Route path="schengen-visa-calculator" element={<SchengenVisaCalculatorPage />} />
             <Route path="how-many-days-can-i-stay-in-europe" element={<HowManyDaysPage />} />

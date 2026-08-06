@@ -10,7 +10,7 @@ export function generateStructuredData({ type, data }: StructuredDataProps) {
       '@type': 'WebApplication',
       name: 'Schengen Calculator',
       description: 'A free calculator that helps travelers understand the Schengen 90/180-day rule and plan their Europe trips compliantly.',
-      url: 'https://schengen-calculator.com',
+      url: 'https://90days180rule.com',
       applicationCategory: 'TravelApplication',
       operatingSystem: 'Web',
       offers: {
@@ -22,7 +22,7 @@ export function generateStructuredData({ type, data }: StructuredDataProps) {
       author: {
         '@type': 'Organization',
         name: 'Schengen Calculator',
-        url: 'https://schengen-calculator.com',
+        url: 'https://90days180rule.com',
       },
       featureList: [
         '90/180 day rule calculation',
@@ -38,17 +38,17 @@ export function generateStructuredData({ type, data }: StructuredDataProps) {
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: 'Schengen Calculator',
-      url: 'https://schengen-calculator.com',
+      url: 'https://90days180rule.com',
       description: 'Free Schengen 90/180 day rule calculator for European travelers',
-      logo: 'https://schengen-calculator.com/logo.png',
+      logo: 'https://90days180rule.com/logo.png',
       sameAs: [
         'https://twitter.com/schengen_calc',
-        'https://facebook.com/schengen-calculator',
+        'https://facebook.com/90days180rule',
       ],
       contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer support',
-        email: 'support@schengen-calculator.com',
+        email: 'support@90days180rule.com',
         availableLanguage: ['English', 'German', 'French', 'Spanish', 'Italian'],
       },
     },
@@ -139,14 +139,14 @@ export function generateStructuredData({ type, data }: StructuredDataProps) {
       author: {
         '@type': 'Organization',
         name: 'Schengen Calculator',
-        url: 'https://schengen-calculator.com',
+        url: 'https://90days180rule.com',
       },
       publisher: {
         '@type': 'Organization',
         name: 'Schengen Calculator',
         logo: {
           '@type': 'ImageObject',
-          url: 'https://schengen-calculator.com/logo.png',
+          url: 'https://90days180rule.com/logo.png',
         },
       },
     },

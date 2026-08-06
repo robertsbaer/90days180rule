@@ -130,7 +130,7 @@ export const useStore = create<SchengenState>()(
       canRedo: () => get().future.length > 0,
     }),
     {
-      name: 'schengen-calculator',
+      name: '90days180rule',
       partialize: (s) => ({ trips: s.trips, theme: s.theme, plannedTrips: s.plannedTrips }),
     }
   )

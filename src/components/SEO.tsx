@@ -16,9 +16,9 @@ const SEO_DEFAULTS = {
   title: 'Free Schengen 90/180 Day Calculator | Calculate Your Europe Stay',
   description: 'Free Schengen calculator to check your 90/180 day rule. Find out how many days you have left in Europe, when you need to leave, and when you can return. No registration required.',
   keywords: 'Schengen calculator, Schengen 90/180 rule, Europe visa calculator, 90 day rule Europe, Schengen visa calculator, how many days in Europe, EU travel calculator, Schengen days remaining, when can I return to Europe',
-  image: 'https://schengen-calculator.com/og-image.jpg',
+  image: 'https://90days180rule.com/og-image.jpg',
   imageAlt: 'Schengen 90/180 Day Rule Calculator - Free Europe Travel Tool',
-  canonical: 'https://schengen-calculator.com',
+  canonical: 'https://90days180rule.com',
 };
 
 export function SEO({
@@ -81,11 +81,11 @@ export function SEO({
       )}
 
       {/* Alternate languages (when we add i18n) */}
-      {/* <link rel="alternate" hreflang="en" href="https://schengen-calculator.com" />
-      <link rel="alternate" hreflang="de" href="https://schengen-calculator.com/de" />
-      <link rel="alternate" hreflang="fr" href="https://schengen-calculator.com/fr" />
-      <link rel="alternate" hreflang="es" href="https://schengen-calculator.com/es" />
-      <link rel="alternate" hreflang="it" href="https://schengen-calculator.com/it" /> */}
+      {/* <link rel="alternate" hreflang="en" href="https://90days180rule.com" />
+      <link rel="alternate" hreflang="de" href="https://90days180rule.com/de" />
+      <link rel="alternate" hreflang="fr" href="https://90days180rule.com/fr" />
+      <link rel="alternate" hreflang="es" href="https://90days180rule.com/es" />
+      <link rel="alternate" hreflang="it" href="https://90days180rule.com/it" /> */}
     </Helmet>
   );
 }
