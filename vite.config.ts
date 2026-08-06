@@ -2,7 +2,7 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';
-import { Prerenderer } from 'vite-plugin-prerender';
+import Prerenderer from 'vite-plugin-prerender';
 
 const routes = [
   '/',
@@ -23,7 +23,7 @@ export default defineConfig({
   base: '/',
   plugins: [
     react(),
-    new Prerenderer({
+    Prerenderer({
       // Required - The path to the vite-outputted app to prerender.
       staticDir: fileURLToPath(new URL('./dist', import.meta.url)),
       // Required - Routes to render.
@@ -45,9 +45,5 @@ export default defineConfig({
   },
   optimizeDeps: {
     exclude: ['lucide-react'],
-  },
-  test: {
-    globals: true,
-    environment: 'node',
   },
 });
