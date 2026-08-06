@@ -115,11 +115,11 @@ export function UnifiedTimeline({
       <div className="relative mt-4">
         {/* Today Marker Line */}
         <div
-          className="absolute top-0 h-full w-px border-l-2 border-dashed border-slate-400/60"
+          className="absolute top-0 h-full w-px border-l-2 border-dashed border-slate-400/60 z-10"
           style={{ left: `calc(${todayPct}% + 9rem)` }}
         />
         <div
-          className="absolute -top-1 -translate-x-1/2 rounded bg-slate-700 px-1.5 py-0.5 text-[9px] font-medium text-white"
+          className="absolute -top-1 -translate-x-1/2 rounded bg-slate-700 px-1.5 py-0.5 text-[9px] font-medium text-white z-20"
           style={{ left: `calc(${todayPct}% + 9rem)` }}
         >
           Today
