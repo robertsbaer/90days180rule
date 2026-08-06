@@ -5,6 +5,18 @@ export interface StructuredDataProps {
 
 export function generateStructuredData({ type, data }: StructuredDataProps) {
   const baseSchemas: Record<string, object> = {
+    SoftwareApplication: {
+      '@context': 'https://schema.org',
+      '@type': 'SoftwareApplication',
+      name: 'Schengen 90/180 Day Calculator',
+      applicationCategory: 'TravelApplication',
+      operatingSystem: 'Web',
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD',
+      },
+    },
     WebApplication: {
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
@@ -67,34 +79,58 @@ export function generateStructuredData({ type, data }: StructuredDataProps) {
         },
         {
           '@type': 'Question',
-          name: 'How many days can I stay in Europe without a visa?',
+          name: 'How does the Schengen calculator work?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Most non-EU citizens can stay in the Schengen Area for up to 90 days within any 180-day period without a visa. This applies to all Schengen countries combined, not 90 days per country.',
+            text: 'You enter your past and planned travel dates, and the calculator determines if your trips comply with the 90/180 rule. It shows your remaining days and flags any potential overstays.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Does the Schengen calculator count arrival and departure days?',
+          name: 'Do arrival and departure days count?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes, both your arrival day and departure day count toward your 90-day limit, even if you only spend part of those days in the Schengen Area.',
+            text: 'Yes. Both the day you enter the Schengen Area and the day you leave count as full days within your 90-day allowance.',
           },
         },
         {
           '@type': 'Question',
-          name: 'When can I return to Europe after using my 90 days?',
+          name: 'Can I reset my Schengen 90 days?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'You can return to the Schengen Area when enough days have expired from your previous visits so that you no longer exceed 90 days in the rolling 180-day window. Our calculator shows your exact return date.',
+            text: 'No, the 90-day allowance does not \'reset\' in a simple way. It operates on a rolling 180-day basis. To regain days, you must wait for old travel days to expire from this 180-day window.',
           },
         },
         {
           '@type': 'Question',
-          name: 'Is this Schengen calculator free?',
+          name: 'How many days can Americans stay in Europe?',
           acceptedAnswer: {
             '@type': 'Answer',
-            text: 'Yes, our Schengen calculator is completely free to use with no registration required. We provide this tool to help travelers understand and comply with Schengen visa rules.',
+            text: 'U.S. citizens can stay in the Schengen Area for up to 90 days within any 180-day period for tourism or business without a visa.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'How many days can UK citizens stay in Schengen?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Following Brexit, UK citizens can also stay in the Schengen Area for up to 90 days in any 180-day period without a visa.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Does leaving Schengen reset the 90 days?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No. Leaving the Schengen Area does not reset the 180-day clock or your 90-day allowance. The calculation is always based on the past 180 days from any given date.',
+          },
+        },
+        {
+          '@type': 'Question',
+          name: 'Is this an official EU calculator?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'No, this is an independent, free tool designed to help travelers understand and apply the 90/180 rule. It is not affiliated with the European Union.',
           },
         },
       ],
@@ -164,40 +200,32 @@ export const SCHENGEN_FAQ_DATA = [
     answer: 'The Schengen 90/180 rule allows non-EU visitors to stay in the Schengen Area for a maximum of 90 days within any rolling 180-day period. This rule applies to short-stay visits for tourism, business, or family visits.',
   },
   {
-    question: 'How many days can I stay in Europe without a visa?',
-    answer: 'Most non-EU citizens can stay in the Schengen Area for up to 90 days within any 180-day period without a visa. This applies to all Schengen countries combined, not 90 days per country.',
+    question: 'How does the Schengen calculator work?',
+    answer: 'You enter your past and planned travel dates, and the calculator determines if your trips comply with the 90/180 rule. It shows your remaining days and flags any potential overstays.',
   },
   {
-    question: 'Does the Schengen calculator count arrival and departure days?',
-    answer: 'Yes, both your arrival day and departure day count toward your 90-day limit, even if you only spend part of those days in the Schengen Area.',
+    question: 'Do arrival and departure days count?',
+    answer: 'Yes. Both the day you enter the Schengen Area and the day you leave count as full days within your 90-day allowance.',
   },
   {
-    question: 'Can I stay 90 days, leave, and return immediately?',
-    answer: 'No, you cannot simply leave for a day and return. The 90/180 rule is based on a rolling 180-day window. You need to wait until enough days expire from your previous visits before returning.',
+    question: 'Can I reset my Schengen 90 days?',
+    answer: 'No, the 90-day allowance does not \'reset\' in a simple way. It operates on a rolling 180-day basis. To regain days, you must wait for old travel days to expire from this 180-day window.',
   },
   {
-    question: 'How do I calculate my remaining Schengen days?',
-    answer: 'Use our free Schengen calculator by entering your previous trips. It automatically calculates how many days you have remaining in your current 180-day period and shows when you can return.',
+    question: 'How many days can Americans stay in Europe?',
+    answer: 'U.S. citizens can stay in the Schengen Area for up to 90 days within any 180-day period for tourism or business without a visa.',
   },
   {
-    question: 'When can I return to Europe after using my 90 days?',
-    answer: 'You can return when enough days have expired from your previous visits so you no longer exceed 90 days in the rolling 180-day window. Our calculator shows your exact return date.',
+    question: 'How many days can UK citizens stay in Schengen?',
+    answer: 'Following Brexit, UK citizens can also stay in the Schengen Area for up to 90 days in any 180-day period without a visa.',
   },
   {
-    question: 'Does this calculator work for all Schengen countries?',
-    answer: 'Yes, our calculator works for all Schengen Area countries including France, Spain, Italy, Germany, Netherlands, Switzerland, Norway, and many others.',
+    question: 'Does leaving Schengen reset the 90 days?',
+    answer: 'No. Leaving the Schengen Area does not reset the 180-day clock or your 90-day allowance. The calculation is always based on the past 180 days from any given date.',
   },
   {
-    question: 'Is this Schengen calculator free?',
-    answer: 'Yes, our Schengen calculator is completely free to use with no registration required. We provide this tool to help travelers understand and comply with Schengen visa rules.',
-  },
-  {
-    question: 'Do EU citizens need this calculator?',
-    answer: 'No, EU citizens and citizens of Schengen countries can travel freely within the Schengen Area without time limits. This calculator is for non-EU visitors subject to the 90/180 rule.',
-  },
-  {
-    question: 'Does a long-stay visa follow the 90/180 rule?',
-    answer: 'No, long-stay visas (over 90 days) and residence permits are not subject to the 90/180 rule. This rule only applies to short-stay visits without a visa or with a short-stay visa.',
+    question: 'Is this an official EU calculator?',
+    answer: 'No, this is an independent, free tool designed to help travelers understand and apply the 90/180 rule. It is not affiliated with the European Union.',
   },
 ];
 

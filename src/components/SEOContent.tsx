@@ -1,55 +1,8 @@
 import { useState } from 'react';
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { SCHENGEN_FAQ_DATA } from '@/lib/structuredData';
 
-const SCHENGEN_COUNTRIES = [
-  'Austria', 'Belgium', 'Czech Republic', 'Denmark', 'Estonia', 'Finland', 
-  'France', 'Germany', 'Greece', 'Hungary', 'Iceland', 'Italy', 'Latvia', 
-  'Liechtenstein', 'Lithuania', 'Luxembourg', 'Malta', 'Netherlands', 'Norway', 
-  'Poland', 'Portugal', 'Slovakia', 'Slovenia', 'Spain', 'Sweden', 'Switzerland'
-];
-
-const FAQ_ITEMS = [
-  {
-    question: 'What is the Schengen 90/180 rule?',
-    answer: 'The Schengen 90/180 rule allows non-EU visitors to stay in the Schengen Area for a maximum of 90 days within any rolling 180-day period. This rule applies to short-stay visits for tourism, business, or family visits.',
-  },
-  {
-    question: 'How many days can I stay in Europe without a visa?',
-    answer: 'Most non-EU citizens can stay in the Schengen Area for up to 90 days within any 180-day period without a visa. This applies to all Schengen countries combined, not 90 days per country.',
-  },
-  {
-    question: 'Does the Schengen calculator count arrival and departure days?',
-    answer: 'Yes, both your arrival day and departure day count toward your 90-day limit, even if you only spend part of those days in the Schengen Area.',
-  },
-  {
-    question: 'Can I stay 90 days, leave, and return immediately?',
-    answer: 'No, you cannot simply leave for a day and return. The 90/180 rule is based on a rolling 180-day window. You need to wait until enough days expire from your previous visits before returning.',
-  },
-  {
-    question: 'How do I calculate my remaining Schengen days?',
-    answer: 'Use our free Schengen calculator by entering your previous trips. It automatically calculates how many days you have remaining in your current 180-day period and shows when you can return.',
-  },
-  {
-    question: 'When can I return to Europe after using my 90 days?',
-    answer: 'You can return when enough days have expired from your previous visits so you no longer exceed 90 days in the rolling 180-day window. Our calculator shows your exact return date.',
-  },
-  {
-    question: 'Does this calculator work for all Schengen countries?',
-    answer: 'Yes, our calculator works for all Schengen Area countries including France, Spain, Italy, Germany, Netherlands, Switzerland, Norway, and many others.',
-  },
-  {
-    question: 'Is this Schengen calculator free?',
-    answer: 'Yes, our Schengen calculator is completely free to use with no registration required. We provide this tool to help travelers understand and comply with Schengen visa rules.',
-  },
-  {
-    question: 'Do EU citizens need this calculator?',
-    answer: 'No, EU citizens and citizens of Schengen countries can travel freely within the Schengen Area without time limits. This calculator is for non-EU visitors subject to the 90/180 rule.',
-  },
-  {
-    question: 'Does a long-stay visa follow the 90/180 rule?',
-    answer: 'No, long-stay visas (over 90 days) and residence permits are not subject to the 90/180 rule. This rule only applies to short-stay visits without a visa or with a short-stay visa.',
-  },
-];
+const FAQ_ITEMS: { question: string, answer: string }[] = SCHENGEN_FAQ_DATA;
 
 function AccordionItem({ question, answer, isOpen, onToggle }: {
   question: string;
@@ -92,64 +45,76 @@ export function SEOContent() {
 
   return (
     <div className="space-y-12 py-12">
-      {/* What is Schengen 90/180 Rule Section */}
+      {/* Intro Section */}
+      <section className="text-center">
+        <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-100 mb-4">
+          Free Schengen 90/180 Day Calculator
+        </h1>
+        <p className="text-lg text-slate-700 dark:text-slate-300 max-w-3xl mx-auto">
+          Find out exactly how many days you can stay in the Schengen Area. Our free 90/180 calculator tracks your previous trips, calculates remaining days, and helps you avoid accidentally overstaying your visa-free allowance.
+        </p>
+      </section>
+
+      {/* How the Rule Works Section */}
       <section className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-8">
         <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">
-          What is the Schengen 90/180 Rule?
+          How the Schengen 90/180 Rule Works
         </h2>
         <div className="prose prose-slate dark:prose-invert max-w-none">
           <p className="text-lg text-slate-700 dark:text-slate-300 mb-4">
-            The Schengen 90/180 rule is a visa policy that allows non-EU visitors to stay in the Schengen Area for a maximum of <strong>90 days within any rolling 180-day period</strong>.
+            The rule states you can stay a maximum of <strong>90 days</strong> within any <strong>rolling 180-day period</strong>. It is not tied to a calendar year. All Schengen countries share this allowance, and both your entry and exit days count.
           </p>
-          <div className="grid md:grid-cols-2 gap-6 mt-6">
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700">
-              <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-3">Key Points:</h3>
-              <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                <li>• Maximum 90 days stay allowed</li>
-                <li>• Within any rolling 180-day period</li>
-                <li>• Entry and exit days both count</li>
-                <li>• Applies to all Schengen countries combined</li>
-                <li>• For tourism, business, or family visits</li>
-              </ul>
-            </div>
-            <div className="bg-white dark:bg-slate-800 rounded-lg p-6 border border-slate-200 dark:border-slate-700">
-              <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-3">Important Notes:</h3>
-              <ul className="space-y-2 text-slate-700 dark:text-slate-300">
-                <li>• The 180-day window rolls continuously</li>
-                <li>• You must count all Schengen countries together</li>
-                <li>• Overstaying can result in fines or entry bans</li>
-                <li>• Different rules apply for long-stay visas</li>
-                <li>• EU citizens are exempt from this rule</li>
-              </ul>
-            </div>
+        </div>
+      </section>
+
+      {/* How To Use Section */}
+      <section>
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">
+          How To Use This Schengen Calculator
+        </h2>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Step 1</div>
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Enter Previous Trips</h3>
+            <p className="text-slate-700 dark:text-slate-300 text-sm">Add your past trips to any Schengen country.</p>
+          </div>
+          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-6 border border-green-200 dark:border-green-800">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">Step 2</div>
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Add Future Plans</h3>
+            <p className="text-slate-700 dark:text-slate-300 text-sm">Add any future trips you are planning to take.</p>
+          </div>
+          <div className="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20 rounded-lg p-6 border border-purple-200 dark:border-purple-800">
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">Step 3</div>
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Review Remaining Days</h3>
+            <p className="text-slate-700 dark:text-slate-300 text-sm">Instantly see your remaining days and compliance status.</p>
           </div>
         </div>
       </section>
 
-
-
-      {/* Schengen Countries Section */}
+      {/* Why Use Our Calculator Section */}
       <section className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-8">
-        <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">
-          Which Countries Use the Schengen Rule?
-        </h2>
-        <p className="text-lg text-slate-700 dark:text-slate-300 mb-6">
-          The Schengen Area includes {SCHENGEN_COUNTRIES.length} European countries. The 90/180 rule applies to the entire area as a single zone.
-        </p>
-        <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-3">
-          {SCHENGEN_COUNTRIES.map((country) => (
-            <div
-              key={country}
-              className="bg-white dark:bg-slate-800 rounded-lg p-3 border border-slate-200 dark:border-slate-700 text-center"
-            >
-              <span className="text-slate-900 dark:text-slate-100 font-medium">{country}</span>
-            </div>
-          ))}
-        </div>
-        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-          <p className="text-blue-800 dark:text-blue-300 text-sm">
-            <strong>Note:</strong> Some countries like Ireland, Bulgaria, Romania, and Cyprus are EU members but not part of the Schengen Area and have different visa rules.
-          </p>
+        <h2 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-6">Why Use Our Calculator?</h2>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="text-center">
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">100% Free</h3>
+            <p className="text-slate-700 dark:text-slate-300 text-sm">This tool is completely free to use.</p>
+          </div>
+          <div className="text-center">
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">No Account Required</h3>
+            <p className="text-slate-700 dark:text-slate-300 text-sm">No registration or sign-up needed.</p>
+          </div>
+          <div className="text-center">
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Easy Travel Planning</h3>
+            <p className="text-slate-700 dark:text-slate-300 text-sm">Plan your future trips with confidence.</p>
+          </div>
+          <div className="text-center">
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Mobile Friendly</h3>
+            <p className="text-slate-700 dark:text-slate-300 text-sm">Works perfectly on desktop and mobile.</p>
+          </div>
+          <div className="text-center">
+            <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Avoid Overstays</h3>
+            <p className="text-slate-700 dark:text-slate-300 text-sm">Prevent accidental and costly overstays.</p>
+          </div>
         </div>
       </section>
 
@@ -159,7 +124,7 @@ export function SEOContent() {
           Frequently Asked Questions
         </h2>
         <div className="space-y-3">
-          {FAQ_ITEMS.map((faq, index) => (
+          {SCHENGEN_FAQ_DATA.map((faq, index) => (
             <AccordionItem
               key={index}
               question={faq.question}
@@ -170,9 +135,6 @@ export function SEOContent() {
           ))}
         </div>
       </section>
-
-
-
 
     </div>
   );

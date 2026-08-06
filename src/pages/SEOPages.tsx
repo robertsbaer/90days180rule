@@ -67,3 +67,25 @@ export function WhenCanIReturnPage() {
     </>
   );
 }
+
+export function USACitizensPage() {
+  const structuredData = [generateStructuredData({ type: 'Article', data: {} })];
+  return (
+    <>
+      <SEO {...SEO_CONFIGS['schengen-calculator-americans']} type="article" structuredData={structuredData} />
+      {/* TODO: Add unique content for this page */}
+      <SEOContent />
+    </>
+  );
+}
+
+export function UKCitizensPage() {
+  const structuredData = [generateStructuredData({ type: 'Article', data: {} })];
+  return (
+    <>
+      <SEO {...SEO_CONFIGS['schengen-calculator-uk']} type="article" structuredData={structuredData} />
+      {/* TODO: Add unique content for this page */}
+      <SEOContent />
+    </>
+  );
+}

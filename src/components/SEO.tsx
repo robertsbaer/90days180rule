@@ -93,8 +93,8 @@ export function SEO({
 // Pre-defined SEO configurations for different pages
 export const SEO_CONFIGS = {
   home: {
-    title: 'Free Schengen 90/180 Day Calculator | Calculate Your Europe Stay',
-    description: 'Free Schengen calculator to check your 90/180 day rule. Find out how many days you have left in Europe, when you need to leave, and when you can return. No registration required.',
+    title: 'Schengen 90/180 Day Calculator (Free) | Check Your Visa Stay Days',
+    description: 'Calculate your Schengen 90/180 day allowance instantly. Track used days, remaining days, and plan future Europe trips with our free Schengen visa calculator.',
     keywords: 'Schengen calculator, Schengen 90/180 rule, Europe visa calculator, 90 day rule Europe, Schengen visa calculator, how many days in Europe, EU travel calculator, Schengen days remaining, when can I return to Europe',
   },
   
@@ -105,9 +105,21 @@ export const SEO_CONFIGS = {
   },
 
   '90-180-rule': {
-    title: 'Schengen 90/180 Rule Explained | Complete Guide & Calculator',
+    title: 'Schengen 90/180 Rule Explained | How the Visa Stay Limit Works',
     description: 'Learn everything about the Schengen 90/180 rule. How it works, how to calculate it, and use our free calculator to check your compliance.',
     keywords: 'Schengen 90/180 rule, 90 180 rule Europe, Schengen rule explained, Europe visa 90 days, rolling 180 days, Schengen calculator',
+  },
+
+  'schengen-calculator-americans': {
+    title: 'Schengen Calculator for Americans | Track Your 90 Days in Europe',
+    description: 'Free Schengen calculator for U.S. citizens traveling to Europe. Track your 90/180 day allowance and plan your trips to avoid overstays.',
+    keywords: 'Schengen calculator for Americans, US citizen Schengen, 90 day rule Americans, Europe travel for Americans, American Schengen visa',
+  },
+
+  'schengen-calculator-uk': {
+    title: 'Schengen Calculator UK Travellers | Check Your Schengen Days',
+    description: 'The essential Schengen 90/180 day calculator for UK citizens. Post-Brexit, track your days in the EU to ensure you comply with the new travel rules.',
+    keywords: 'Schengen calculator UK, UK citizen Schengen, 90 day rule UK, Brexit travel rules, UK to Europe travel',
   },
 
   'schengen-visa-calculator': {
