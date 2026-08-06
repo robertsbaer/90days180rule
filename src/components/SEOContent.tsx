@@ -73,18 +73,18 @@ export function SEOContent() {
           How To Use This Schengen Calculator
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20 rounded-lg p-6 border border-blue-200 dark:border-blue-800">
-            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">Step 1</div>
+          <div className="rounded-lg p-6 border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+            <div className="text-2xl font-bold text-slate-500 dark:text-slate-400 mb-2">Step 1</div>
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Enter Previous Trips</h3>
             <p className="text-slate-700 dark:text-slate-300 text-sm">Add your past trips to any Schengen country.</p>
           </div>
-          <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg p-6 border border-green-200 dark:border-green-800">
-            <div className="text-2xl font-bold text-green-600 dark:text-green-400 mb-2">Step 2</div>
+          <div className="rounded-lg p-6 border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+            <div className="text-2xl font-bold text-slate-500 dark:text-slate-400 mb-2">Step 2</div>
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Add Future Plans</h3>
             <p className="text-slate-700 dark:text-slate-300 text-sm">Add any future trips you are planning to take.</p>
           </div>
-          <div className="bg-gradient-to-br from-purple-50 to-violet-50 dark:from-purple-900/20 dark:to-violet-900/20 rounded-lg p-6 border border-purple-200 dark:border-purple-800">
-            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-2">Step 3</div>
+          <div className="rounded-lg p-6 border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700">
+            <div className="text-2xl font-bold text-slate-500 dark:text-slate-400 mb-2">Step 3</div>
             <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">Review Remaining Days</h3>
             <p className="text-slate-700 dark:text-slate-300 text-sm">Instantly see your remaining days and compliance status.</p>
           </div>

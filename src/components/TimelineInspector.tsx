@@ -112,22 +112,21 @@ export function UnifiedTimeline({
           />
         }
       />
-      <div className="relative h-64 overflow-y-auto pr-2">
-        <div className="relative mb-2">
-          <div className="ml-[7.5rem] relative h-0">
-            <div
-              className="absolute top-0 h-64 w-px border-l-2 border-dashed border-slate-400/60"
-              style={{ left: `${todayPct}%` }}
-            />
-            <span
-              className="absolute -top-1 -translate-x-1/2 rounded bg-slate-700 px-1.5 py-0.5 text-[9px] font-medium text-white"
-              style={{ left: `${todayPct}%` }}
-            >
-              Today
-            </span>
-          </div>
+      <div className="relative mt-4">
+        {/* Today Marker Line */}
+        <div
+          className="absolute top-0 h-full w-px border-l-2 border-dashed border-slate-400/60"
+          style={{ left: `calc(${todayPct}% + 9rem)` }}
+        />
+        <div
+          className="absolute -top-1 -translate-x-1/2 rounded bg-slate-700 px-1.5 py-0.5 text-[9px] font-medium text-white"
+          style={{ left: `calc(${todayPct}% + 9rem)` }}
+        >
+          Today
         </div>
-        <div className="space-y-2">
+
+        <div className="space-y-6">
+          {/* Trip Rows */}
           {sorted.map((trip, i) => {
             const startOffset = differenceInCalendarDays(toDate(trip.entryDate), earliest);
             const len = tripLength(trip);
@@ -139,40 +138,42 @@ export function UnifiedTimeline({
             }).length;
             const expires = new Date(toDate(trip.exitDate));
             expires.setDate(expires.getDate() + WINDOW_DAYS);
+
             return (
-              <div key={trip.id} className="group relative">
-                <div className="flex items-center gap-2">
-                  <span className="w-28 shrink-0 truncate text-xs text-slate-500 dark:text-slate-400">
-                    {fmt(trip.entryDate)}
-                  </span>
-                  <div className="relative h-7 flex-1 rounded bg-slate-100 dark:bg-slate-800/60">
+              <div key={trip.id} className="group relative animate-fade-in">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+                  <div className="w-36 shrink-0 text-xs sm:text-right">
+                    <p className="font-medium text-slate-700 dark:text-slate-300">{fmt(trip.entryDate)}</p>
+                    <p className="text-slate-500 dark:text-slate-400">to {fmt(trip.exitDate)}</p>
+                  </div>
+                  <div className="relative h-8 flex-1 rounded-md bg-slate-100 dark:bg-slate-800/60 mt-1 sm:mt-0">
                     <div
-                      style={{ left: `${leftPct}%`, width: `${Math.max(widthPct, 2)}%`, backgroundColor: TRIP_COLORS[i % TRIP_COLORS.length] }}
-                      className="absolute top-0 h-7 rounded text-[10px] font-medium text-white flex items-center justify-center overflow-hidden transition-all duration-150"
-                      title={`${len} days · ${daysInWindow} counting`}
+                      style={{ left: `${leftPct}%`, width: `${Math.max(widthPct, 0.5)}%` }}
+                      className="absolute top-0 h-full rounded-md transition-all duration-300 ease-out flex items-center justify-end pr-2"
                     >
-                      {len}d
+                      <div 
+                        className="h-full rounded-md flex items-center justify-center px-2"
+                        style={{ backgroundColor: TRIP_COLORS[i % TRIP_COLORS.length] }}
+                        title={`${len} days · ${daysInWindow} still counting`}
+                      >
+                        <span className="text-[10px] font-bold text-white">{len}d</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="ml-[7.5rem] mt-1 hidden text-xs text-slate-400 group-hover:block">
-                  <span className="font-medium text-slate-600 dark:text-slate-300">{len} days</span>
-                  {' · '}
-                  <span>{daysInWindow} still counting</span>
-                  {' · '}
-                  <span>stops counting {format(expires, 'MMM d, yyyy')}</span>
                 </div>
               </div>
             );
           })}
-        </div>
-        <div className="mt-3 space-y-1.5">
-          {latestLegalPct !== null && (
-            <FutureMarker label="Latest legal departure" pct={latestLegalPct} color="bg-emerald-500" />
-          )}
-          {recoveryPct !== null && (
-            <FutureMarker label="Earliest return (30d)" pct={recoveryPct} color="bg-brand-500" />
-          )}
+
+          {/* Future Marker Rows */}
+          <div className="mt-6 space-y-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+            {latestLegalPct !== null && (
+              <FutureMarker label="Latest legal departure" pct={latestLegalPct} color="bg-emerald-500" />
+            )}
+            {recoveryPct !== null && (
+              <FutureMarker label="Earliest return (30d)" pct={recoveryPct} color="bg-blue-500" />
+            )}
+          </div>
         </div>
       </div>
     </Card>
@@ -181,11 +182,11 @@ export function UnifiedTimeline({
 
 function FutureMarker({ label, pct, color }: { label: string; pct: number; color: string }) {
   return (
-    <div className="flex items-center gap-2">
-      <span className="w-28 shrink-0 truncate text-xs text-slate-500 dark:text-slate-400">{label}</span>
-      <div className="relative h-4 flex-1 rounded-lg bg-slate-100 dark:bg-slate-800/60">
+    <div className="flex flex-col sm:flex-row sm:items-center sm:gap-4">
+      <p className="w-36 shrink-0 text-xs text-slate-500 dark:text-slate-400 sm:text-right">{label}</p>
+      <div className="relative h-8 flex-1 rounded-md bg-slate-100 dark:bg-slate-800/60 mt-1 sm:mt-0">
         <div
-          className={`absolute top-1/2 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full ${color}`}
+          className={`absolute top-1/2 h-3.5 w-3.5 -translate-y-1/2 rounded-full ${color}`}
           style={{ left: `${Math.min(Math.max(pct, 0), 100)}%` }}
         />
       </div>
