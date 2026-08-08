@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { format, parseISO, eachDayOfInterval, addDays, subDays } from 'date-fns';
+import { format, parseISO, eachDayOfInterval, addDays, subDays, isSameMonth, isToday } from 'date-fns';
 import { Card, SectionTitle, Pill, InfoTooltip, Explanation } from '@/components/ui';
 import { useStore } from '@/store';
 import {
@@ -16,6 +16,7 @@ import {
   toISO,
   toDate,
   type DayBreakdown,
+  type Trip,
 } from '@/lib/schengen';
 
 function fmt(iso: string) {
@@ -26,31 +27,15 @@ function fmt(iso: string) {
   }
 }
 
-export function ForecastCalendar() {
-  const trips = useStore((s) => s.trips);
-  const plannedTrips = useStore((s) => s.plannedTrips);
+export function ForecastCalendar({ trips }: { trips: Trip[] }) {
   const occupied = useMemo(() => expandTripsToDays(trips), [trips]);
-  const plannedOccupied = useMemo(() => {
-    const occupied = new Set<string>();
-    plannedTrips.forEach(trip => {
-      if (trip.schengen && trip.entryDate && trip.exitDate) {
-        const start = new Date(trip.entryDate);
-        const end = new Date(trip.exitDate);
-        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-          occupied.add(format(d, 'yyyy-MM-dd'));
-        }
-      }
-    });
-    return occupied;
-  }, [plannedTrips]);
-  const combinedOccupied = useMemo(() => new Set([...occupied, ...plannedOccupied]), [occupied, plannedOccupied]);
   const today = useMemo(() => new Date(), []);
-  const forecast = useMemo(() => calculateAvailabilityForecast(today, combinedOccupied), [today, combinedOccupied]);
-  const historicalForecast = useMemo(() => calculateAvailabilityForecast(today, occupied), [today, occupied]);
-
+  const forecast = useMemo(() => calculateAvailabilityForecast(today, occupied), [today, occupied]);
   const [selectedDay, setSelectedDay] = useState<string>(todayISO());
-  const [showPlannedTrips, setShowPlannedTrips] = useState(true);
-  const activeForecast = showPlannedTrips ? forecast : historicalForecast;
+  
+  // This is needed for the calendar grid to show planned trips with a different style
+  const plannedTrips = useStore((s) => s.plannedTrips);
+  const plannedOccupied = useMemo(() => expandTripsToDays(plannedTrips.filter(t => t.schengen)), [plannedTrips]);
 
   return (
     <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -58,24 +43,10 @@ export function ForecastCalendar() {
       <Card className="p-5">
         <SectionTitle
           title="Upcoming Available Days"
-          subtitle={showPlannedTrips ? "Including planned trips…" : "If you leave today…"}
-          action={
-            <div className="flex items-center gap-2">
-              <label className="flex items-center gap-2 text-xs">
-                <input
-                  type="checkbox"
-                  checked={showPlannedTrips}
-                  onChange={(e) => setShowPlannedTrips(e.target.checked)}
-                  className="rounded"
-                />
-                Include planned trips
-              </label>
-              <InfoTooltip text="If you left the Schengen Area today, these are the days that would be available to you on each future date as previous travel days expire from your 180-day window." label="What is this?" />
-            </div>
-          }
+          subtitle="Based on your full itinerary"
         />
         <div className="grid grid-cols-2 gap-3">
-          {activeForecast.map((f) => (
+          {forecast.map((f) => (
             <div
               key={f.label}
               className="rounded-md border border-slate-200 p-3 dark:border-slate-800"
@@ -107,11 +78,11 @@ export function ForecastCalendar() {
           action={<InfoTooltip text="Each day is colored by how many Schengen days you'd have remaining. Green = safe, yellow = approaching the limit, red = would be an overstay, gray = past. Planned trips are shown with dashed borders." label="How to read this" />}
         />
         <FutureCalendarGrid
-          occupied={combinedOccupied}
+          occupied={occupied}
           plannedOccupied={plannedOccupied}
           selectedDay={selectedDay}
           onSelect={setSelectedDay}
-          showPlannedTrips={showPlannedTrips}
+          showPlannedTrips={true} // Always show planned trips styling
         />
       </Card>
     </div>
@@ -170,18 +141,26 @@ function FutureCalendarGrid({
             past: 'bg-slate-50 text-slate-400 dark:bg-slate-900 dark:text-slate-600',
           };
           const isSelected = iso === selectedDay;
-          return (
-            <button
-              key={iso}
-              onClick={() => onSelect(iso)}
-              className={`aspect-square rounded text-[10px] font-medium transition-colors ${colors[status]} ${
-                isSelected ? 'ring-1 ring-slate-900 dark:ring-white' : ''
-              } ${isPlanned && showPlannedTrips ? 'border-2 border-dashed border-blue-500 dark:border-blue-400' : ''}`}
-              title={`${iso} · ${Math.max(remaining, 0)} days remaining${isPlanned && showPlannedTrips ? ' · Planned trip' : ''}`}
-            >
-              {d.getDate()}
-            </button>
-          );
+              const klasses = [
+                'flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-transparent text-xs',
+                colors[status],
+              ];
+              if (!isSameMonth(d, start)) klasses.push('text-slate-400 dark:text-slate-600');
+              if (isToday(d)) klasses.push('font-bold', 'text-blue-600');
+              if (isSelected) klasses.push('border-blue-500');
+              if (isPlanned && showPlannedTrips) klasses.push('border-dashed', 'border-slate-400');
+              if (occupied.has(iso) && !isPlanned) klasses.push('bg-slate-200', 'dark:bg-slate-700');
+
+              return (
+                <button
+                  key={iso}
+                  onClick={() => onSelect(iso)}
+                  className={klasses.join(' ')}
+                  title={`${iso} · ${Math.max(remaining, 0)} days remaining${isPlanned && showPlannedTrips ? ' · Planned trip' : ''}`}
+                >
+                  {d.getDate()}
+                </button>
+              );
         })}
       </div>
       <div className="mt-4 rounded-md border border-slate-200 p-3 dark:border-slate-800">
@@ -224,31 +203,13 @@ void midnight;
 
 // ── Daily Breakdown Table ───────────────────────────────────────────────────
 
-export function DailyBreakdownTable() {
-  const trips = useStore((s) => s.trips);
-  const plannedTrips = useStore((s) => s.plannedTrips);
+export function DailyBreakdownTable({ trips }: { trips: Trip[] }) {
   const occupied = useMemo(() => expandTripsToDays(trips), [trips]);
-  const plannedOccupied = useMemo(() => {
-    const occupied = new Set<string>();
-    plannedTrips.forEach(trip => {
-      if (trip.schengen && trip.entryDate && trip.exitDate) {
-        const start = new Date(trip.entryDate);
-        const end = new Date(trip.exitDate);
-        for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-          occupied.add(format(d, 'yyyy-MM-dd'));
-        }
-      }
-    });
-    return occupied;
-  }, [plannedTrips]);
-  const combinedOccupied = useMemo(() => new Set([...occupied, ...plannedOccupied]), [occupied, plannedOccupied]);
 
   const [range, setRange] = useState(30);
   const [sortKey, setSortKey] = useState<'date' | 'daysUsed' | 'remaining' | 'status'>('date');
   const [sortDir, setSortDir] = useState<'asc' | 'desc'>('asc');
-  const [showPlannedTrips, setShowPlannedTrips] = useState(true);
-  const activeOccupied = showPlannedTrips ? combinedOccupied : occupied;
-
+  
   const today = useMemo(() => new Date(), []);
   const rows = useMemo<DayBreakdown[]>(() => {
     const start = subDays(today, range);
@@ -256,10 +217,10 @@ export function DailyBreakdownTable() {
     return calculateDailyBreakdown(
       toISO(start),
       toISO(end),
-      activeOccupied,
+      occupied,
       trips
     );
-  }, [today, range, activeOccupied, trips]);
+  }, [today, range, occupied, trips]);
 
   const sorted = useMemo(() => {
     const sortedRows = [...rows];
@@ -309,15 +270,6 @@ export function DailyBreakdownTable() {
         subtitle="Rolling window per day"
         action={
           <div className="flex items-center gap-2">
-            <label className="flex items-center gap-2 text-xs">
-              <input
-                type="checkbox"
-                checked={showPlannedTrips}
-                onChange={(e) => setShowPlannedTrips(e.target.checked)}
-                className="rounded"
-              />
-              Include planned
-            </label>
             <select
               value={range}
               onChange={(e) => setRange(Number(e.target.value))}

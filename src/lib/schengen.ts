@@ -193,46 +193,41 @@ export function calculatePlanningResult(
   occupied: Set<string>
 ): PlanningResult {
   const len = differenceInCalendarDays(toDate(exitISO), toDate(entryISO)) + 1;
-  // Build a hypothetical occupied set including the planned trip
   const plannedDays = new Set(occupied);
-  for (const d of expandTripToDays({ id: 'plan', entryDate: entryISO, exitDate: exitISO })) {
+  const newTripDays = expandTripToDays({ id: 'plan', entryDate: entryISO, exitDate: exitISO });
+  for (const d of newTripDays) {
     plannedDays.add(d);
   }
-  // The day we care about is the exit day (the last day in Schengen)
-  const exitDate = toDate(exitISO);
-  const daysUsedAfter = calculateDaysUsed(exitDate, plannedDays);
-  const remainingAfter = MAX_DAYS - daysUsedAfter;
-  const legal = daysUsedAfter <= MAX_DAYS;
 
-  // If illegal, find the first day in the trip where the window exceeds 90
   let overstayBegins: string | null = null;
-  let reduceStayBy = 0;
-  if (!legal) {
-    let cursor = toDate(entryISO);
-    let lastLegal = toDate(entryISO);
-    while (!isAfter(cursor, exitDate)) {
-      const used = calculateDaysUsed(cursor, plannedDays);
-      if (used > MAX_DAYS) {
-        overstayBegins = toISO(cursor);
-        break;
-      }
-      lastLegal = cursor;
-      cursor = new Date(cursor);
-      cursor.setDate(cursor.getDate() + 1);
+  let maxDaysUsed = 0;
+
+  // Check every day of the trip to find the day with the highest usage.
+  for (const day of newTripDays) {
+    const used = calculateDaysUsed(day, plannedDays);
+    if (used > maxDaysUsed) {
+      maxDaysUsed = used;
     }
-    if (overstayBegins) {
-      reduceStayBy = differenceInCalendarDays(toDate(exitISO), toDate(overstayBegins)) + 1;
+    // Find the first day of overstay
+    if (used > MAX_DAYS && overstayBegins === null) {
+      overstayBegins = day;
     }
-    void lastLegal;
   }
+
+  const legal = maxDaysUsed <= MAX_DAYS;
+  const reduceStayBy = legal ? null : maxDaysUsed - MAX_DAYS;
+  
+  const exitDate = toDate(exitISO);
+  const daysUsedOnExit = calculateDaysUsed(exitDate, plannedDays);
+  const remainingAfter = MAX_DAYS - daysUsedOnExit;
 
   return {
     tripLength: len,
     legal,
-    daysUsedAfter,
+    daysUsedAfter: daysUsedOnExit,
     remainingAfter,
     overstayBegins,
-    reduceStayBy: legal ? null : reduceStayBy,
+    reduceStayBy,
   };
 }
 

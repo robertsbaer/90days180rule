@@ -27,6 +27,7 @@ import {
   MAX_DAYS,
   todayISO,
   toDate,
+  type Trip,
 } from '@/lib/schengen';
 
 function fmt(iso: string) {
@@ -39,16 +40,14 @@ function fmt(iso: string) {
 
 const TRIP_COLORS = ['#3b82f6', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#ec4899'];
 
-export function TimelineInspector() {
-  const trips = useStore((s) => s.trips);
+export function TimelineInspector({ trips }: { trips: Trip[] }) {
   const occupied = useMemo(() => expandTripsToDays(trips), [trips]);
   const selectedTripId = useStore((s) => s.selectedTripId);
-  const selectedTrip = trips.find((t) => t.id === selectedTripId) || trips[0] || null;
+  const selectedTrip = trips.find((t) => t.id === selectedTripId) || trips[trips.length - 1] || null;
 
   return (
-    <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-4">
       <UnifiedTimeline trips={trips} occupied={occupied} />
-      <TripInspector trip={selectedTrip} occupied={occupied} />
     </div>
   );
 }
@@ -266,8 +265,7 @@ function TripInspector({
 
 // ── When Your Days Return (recovery graph) ──────────────────────────────────
 
-export function RecoveryGraph() {
-  const trips = useStore((s) => s.trips);
+export function RecoveryGraph({ trips }: { trips: Trip[] }) {
   const occupied = useMemo(() => expandTripsToDays(trips), [trips]);
   const today = useMemo(() => new Date(), []);
 
@@ -362,8 +360,7 @@ export function RecoveryGraph() {
 
 // ── Statistics ───────────────────────────────────────────────────────────────
 
-export function Statistics() {
-  const trips = useStore((s) => s.trips);
+export function Statistics({ trips }: { trips: Trip[] }) {
   const occupied = useMemo(() => expandTripsToDays(trips), [trips]);
   const today = useMemo(() => new Date(), []);
   const stats = useMemo(() => calculateStats(trips, occupied, today), [trips, occupied, today]);

@@ -18,14 +18,24 @@ import {
 } from "@/components/TimelineInspector";
 import { ExpandableSection } from "@/components/ui";
 import { getDashboardSnapshot } from "@/lib/schengen";
+import { isAfter } from "date-fns";
 
 function App() {
   useTheme();
   const trips = useStore((s) => s.trips);
+  const plannedTrips = useStore((s) => s.plannedTrips);
   const today = useMemo(() => new Date(), []);
+
+  const unifiedTrips = useMemo(() => {
+    const validPlannedTrips = plannedTrips.filter(
+        (t) => t.schengen && t.entryDate && t.exitDate && !isAfter(new Date(t.entryDate), new Date(t.exitDate))
+    );
+    return [...trips, ...validPlannedTrips];
+  }, [trips, plannedTrips]);
+
   const snap = useMemo(
-    () => getDashboardSnapshot(trips, today),
-    [trips, today],
+    () => getDashboardSnapshot(unifiedTrips, today),
+    [unifiedTrips, today],
   );
   const overstay = snap.daysUsed > 90;
 
@@ -74,11 +84,11 @@ function App() {
             defaultOpen={false}
           >
             <div className="space-y-6">
-              <ForecastCalendar />
-              <RecoveryGraph />
-              <TimelineInspector />
-              <DailyBreakdownTable />
-              <Statistics />
+              <ForecastCalendar trips={unifiedTrips} />
+              <RecoveryGraph trips={unifiedTrips} />
+              <TimelineInspector trips={unifiedTrips} />
+              <DailyBreakdownTable trips={unifiedTrips} />
+              <Statistics trips={unifiedTrips} />
             </div>
           </ExpandableSection>
         </section>

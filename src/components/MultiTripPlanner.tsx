@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Card, SectionTitle, Button, InfoTooltip } from '@/components/ui';
 import { useStore } from '@/store';
 import { Plus, Trash2, AlertCircle, CheckCircle } from 'lucide-react';
-import { calculatePlanningResult } from '@/lib/schengen';
+import { calculatePlanningResult, expandTripToDays, expandTripsToDays } from '@/lib/schengen';
 import { format, isAfter, isBefore, differenceInCalendarDays } from 'date-fns';
 
 const schengenCountries = [
@@ -20,25 +20,30 @@ export function MultiTripPlanner() {
 
   // Calculate occupied days from historical trips
   const occupiedDays = useMemo(() => {
-    const occupied = new Set<string>();
-    historicalTrips.forEach(trip => {
-      const start = new Date(trip.entryDate);
-      const end = new Date(trip.exitDate);
-      for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-        occupied.add(format(d, 'yyyy-MM-dd'));
-      }
-    });
-    return occupied;
+    return expandTripsToDays(historicalTrips);
   }, [historicalTrips]);
 
   // Analyze planned trips for compliance
   const plannedTripAnalysis = useMemo(() => {
+    const cumulativeOccupied = new Set(occupiedDays);
     return plannedTrips.map(trip => {
       if (!trip.entryDate || !trip.exitDate || !trip.schengen) {
         return { ...trip, legal: null, remainingAfter: null, tripLength: 0 };
       }
 
-      const result = calculatePlanningResult(trip.entryDate, trip.exitDate, occupiedDays);
+      // Important: an invalid trip shouldn't be part of the ongoing calculation
+      const entry = new Date(trip.entryDate);
+      const exit = new Date(trip.exitDate);
+      if (isAfter(entry, exit)) {
+        return { ...trip, legal: false, remainingAfter: null, tripLength: 0, reduceStayBy: null, overstayBegins: trip.entryDate };
+      }
+
+      const result = calculatePlanningResult(trip.entryDate, trip.exitDate, cumulativeOccupied);
+      
+      // Add the current trip's days to the set for the next iteration's context
+      const tripDays = expandTripToDays({id: trip.id, entryDate: trip.entryDate, exitDate: trip.exitDate});
+      tripDays.forEach(day => cumulativeOccupied.add(day));
+
       return {
         ...trip,
         legal: result.legal,
@@ -176,9 +181,9 @@ export function MultiTripPlanner() {
               </span>
             </div>
             <div>
-              <span className="text-slate-600 dark:text-slate-400">Remaining Days:</span>
+              <span className="text-slate-600 dark:text-slate-400">Remaining Days (at end):</span>
               <span className="ml-2 font-medium">
-                {Math.min(...plannedTripAnalysis.filter(t => t.schengen && t.remainingAfter !== null).map(t => t.remainingAfter || 90))} days
+                {plannedTripAnalysis.filter(t => t.schengen).slice(-1).map(t => t.remainingAfter !== null ? `${t.remainingAfter} days` : 'N/A')}
               </span>
             </div>
           </div>
